@@ -2,6 +2,7 @@
 let saveContactBtn = document.getElementById('createBtn');
 let contactList = document.getElementById('contactList');
 let deleteButton = document.getElementById('deleteBtn');
+let eM1 = 0;
 
 
 saveContactBtn.addEventListener('click', function (e) {
@@ -47,32 +48,46 @@ saveContactBtn.addEventListener('click', function (e) {
     }
     /**FUNCTIONS */
 
-    function validateFunction(inputName, inputNumber, contactList) {
+    function validateFunction(inputName, inputNumber) {
+        let errorMessage = document.getElementById('error-message');
+        if (errorMessage) {
+            errorMessage.remove();
+        }
 
         if (inputName.length === 0 || inputNumber.length === 0) {
-            let errorMessage = document.createElement('h3');
+            let insertContact = document.getElementById('insertContact');
+            errorMessage = document.createElement('h4');
+            errorMessage.id = 'error-message';
             errorMessage.textContent = "You have to fill both fields with text!";
-            contactList.appendChild(errorMessage);
+            insertContact.appendChild(errorMessage);
             return true;
         }
         return false;
     }
     function deleteBtnFunction() {
         deleteButton.addEventListener('click', function (e) {
+            if (listItem.parentNode !== null) { 
             listItem.parentNode.remove();
+            }
         });
     }
 
     function changeBtnFunction() {
         btn1.addEventListener('click', function () {
-            if (nameInput.disabled === true) {
+            let errorMessage2 = document.getElementById('error-message2');
+            if (errorMessage2) {
+                errorMessage2.remove();
+            }
+            if (nameInput.disabled === true && numberInput.disabled === true) {
                 nameInput.disabled = false;
                 numberInput.disabled = false;
                 btn1.textContent = 'Save';
             } else if (nameInput.value.length === 0 || numberInput.value.length === 0) {
-                let errorMessage2 = document.createElement('h3');
-                errorMessage2.textContent = "Don´t leave an empty box!";
-                contactList.appendChild(errorMessage2);
+                let changeContact = document.getElementById('changeContact'); 
+                errorMessage2 = document.createElement('h4');
+                errorMessage2.id = 'error-message2';
+                errorMessage2.textContent = "Don´t leave a box empty!";
+                changeContact.appendChild(errorMessage2);
             } else {
                 nameInput.disabled = true;
                 numberInput.disabled = true;
