@@ -1,13 +1,15 @@
 
-let saveContactBtn = document.getElementById('createBtn');
+let createContactBtn = document.getElementById('createBtn');
 let contactList = document.getElementById('contactList');
 let deleteButton = document.getElementById('deleteBtn');
 let eM1 = 0;
 
 
-saveContactBtn.addEventListener('click', function (e) {
+createContactBtn.addEventListener('click', function (e) {
     let inputName = document.getElementById('name').value;
     let inputNumber = document.getElementById('number').value;
+
+    clearValue(); 
 
     if (validateFunction(inputName, inputNumber, contactList)) {
         return;
@@ -44,10 +46,31 @@ saveContactBtn.addEventListener('click', function (e) {
         });
 
         deleteBtnFunction();
-
     }
+ 
     /**FUNCTIONS */
 
+    function clearValue(inputName, inputNumber) {
+        var inputName = document.getElementById('name');
+        var inputNumber = document.getElementById('number');
+        if (inputName != null || inputNumber != inputNumber)
+         {
+            inputName.value = "";
+            inputNumber.value = ""; 
+               
+            return false;
+        }
+    }
+
+    function clearValueNumber (inputNumber) {
+        if (inputNumber != null)
+         {
+            inputNumber.value = "";
+        
+            return false;
+        }
+    }
+    
     function validateFunction(inputName, inputNumber) {
         let errorMessage = document.getElementById('error-message');
         if (errorMessage) {
@@ -66,8 +89,9 @@ saveContactBtn.addEventListener('click', function (e) {
     }
     function deleteBtnFunction() {
         deleteButton.addEventListener('click', function (e) {
-            if (listItem.parentNode !== null) { 
-            listItem.parentNode.remove();
+            if (listItem.parentNode !== null) {
+                while (listItem.firstChild)
+                listItem.firstChild.remove();
             }
         });
     }
@@ -83,7 +107,7 @@ saveContactBtn.addEventListener('click', function (e) {
                 numberInput.disabled = false;
                 btn1.textContent = 'Save';
             } else if (nameInput.value.length === 0 || numberInput.value.length === 0) {
-                let changeContact = document.getElementById('changeContact'); 
+                let changeContact = document.getElementById('changeContact');
                 errorMessage2 = document.createElement('h4');
                 errorMessage2.id = 'error-message2';
                 errorMessage2.textContent = "Don´t leave a box empty!";
