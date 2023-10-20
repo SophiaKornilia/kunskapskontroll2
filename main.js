@@ -27,10 +27,10 @@ createContactBtn.addEventListener('click', function (e) {
         numberInput.disabled = true;
 
         var btn1 = document.createElement('button');
-        btn1.textContent = 'Change';
+        btn1.textContent = 'Ändra';
 
         var btn2 = document.createElement('button');
-        btn2.textContent = 'Delete';
+        btn2.textContent = 'Radera';
 
         listItem.appendChild(nameInput);
         listItem.appendChild(numberInput);
@@ -81,7 +81,7 @@ createContactBtn.addEventListener('click', function (e) {
             let insertContact = document.getElementById('insertContact');
             errorMessage = document.createElement('h4');
             errorMessage.id = 'error-message';
-            errorMessage.textContent = "You have to fill both fields with text!";
+            errorMessage.textContent = "Du behöver fylla i båda fälten!";
             insertContact.appendChild(errorMessage);
             return true;
         }
@@ -105,17 +105,17 @@ createContactBtn.addEventListener('click', function (e) {
             if (nameInput.disabled === true && numberInput.disabled === true) {
                 nameInput.disabled = false;
                 numberInput.disabled = false;
-                btn1.textContent = 'Save';
+                btn1.textContent = 'Spara';
             } else if (nameInput.value.length === 0 || numberInput.value.length === 0) {
                 let changeContact = document.getElementById('changeContact');
                 errorMessage2 = document.createElement('h4');
                 errorMessage2.id = 'error-message2';
-                errorMessage2.textContent = "Don´t leave a box empty!";
+                errorMessage2.textContent = "Lämna inget fält tomt!";
                 changeContact.appendChild(errorMessage2);
             } else {
                 nameInput.disabled = true;
                 numberInput.disabled = true;
-                btn1.textContent = 'Change'
+                btn1.textContent = 'Ändra'
             }
         });
     }
